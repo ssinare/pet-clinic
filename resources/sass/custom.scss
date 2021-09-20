@@ -1,0 +1,74 @@
+.card-header {
+    background-color: rgba(238, 235, 230, 0.438);
+    color: black;
+    font-weight: 200;
+    font-style: italic;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+.card-body {
+    box-shadow: 1px 1px 1px 1px grey;
+}
+.py-4 {
+    background-color: rgba(238, 235, 230, 0.438);
+    box-shadow: 1px 1px 1px 1px grey;
+}
+
+.list-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    box-shadow: 1px 1px 1px 1px grey;
+
+    &_content {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    small {
+        color: black;
+        font-style: italic;
+        font-size: 80%;
+    }
+}
+
+.list-block_button {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn {
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px grey;
+}
+div.form-group {
+    color: black;
+    font-style: italic;
+    margin-left: 10px !important;
+    margin: 10px;
+}
+div.note-btn-group.btn-group {
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+.pagination {
+    font-size: 7px;
+}
+.truck-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 11px;
+
+    --_notices {
+        margin-top: 20px;
+    }
+}
+.background-image {
+bbb
+}
