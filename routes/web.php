@@ -56,9 +56,12 @@ Route::group(['prefix' => 'pets'], function () {
 });
 
 
-//Auth::routes(['register' => false]);
+Auth::routes(['register' => false]);
 
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

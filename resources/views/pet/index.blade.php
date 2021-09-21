@@ -54,22 +54,14 @@
                              <div class="form-group">
                                 <select class="form-control" name="owner_id">
                                 <option value="0" disabled selected>Select Owner</option>
-                                {{-- @foreach ($owners as $owner)
+                                @foreach ($owners as $owner)
                                     <option value="{{$owner->id}}" @if($owner_id == $owner->id) selected @endif>{{$owner->name}} {{$owner->surname}}</option>
-                                @endforeach --}}
+                                @endforeach
                                 </select>
                                 <small class="form-text text-muted">Select owner from the list.</small>
                                 <button type="submit" class="btn btn-light" name="filter" value="owner">Filter by owner</button>
                            
-                            </div>
-                              <?php
-for ($i = 1;; $i++){
-if ($i > 10) {
-break;
-}
-echo $i;
-                                              
-                            
+                            </div>            
                             </div>                      
                             <div class="block">
                                  <a href="{{route('pet.index')}}" class="btn btn-secondary">Reset</a>

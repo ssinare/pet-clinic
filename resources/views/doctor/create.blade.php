@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group" style="margin: 10px; font-style: italic">
                                 <label>   Category: </label>
-                                <input type="text" name="doctor_surname" class="form-control" value="{{old('doctor_category')}}">
+                                <input type="text" name="doctor_category" class="form-control" value="{{old('doctor_category')}}">
                                 <small class="form-text text-muted">   Enter new doctor category</small>
                             </div>
                             <div class="form-group" style="margin: 10px">                         

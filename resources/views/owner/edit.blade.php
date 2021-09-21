@@ -20,8 +20,8 @@
                             <small class="form-text text-muted">   Edit owner's surname</small>
                         </div>
                         <div class="form-group" style="margin: 10px; font-style: italic">
-                            <label>  Category: </label>
-                            <textarea type="text" name="owner_contacts"  class="form-control">{{old('owner_contacts')}}</textarea>
+                            <label>  Contacts: </label>
+                            <textarea type="text" name="owner_contacts" id="summernote" class="form-control">{{old('owner_contacts', $owner->contacts)}}</textarea>
                             <small class="form-text text-muted">   Edit owner's contacts</small>
                         </div>
                         <div class="form-group" style="margin: 10px">                         
@@ -34,6 +34,12 @@
        </div>
    </div>
 </div>
+
+<script>
+$(document).ready(function() {
+   $('#summernote').summernote();
+ });
+</script>
 @endsection
 
 @section('title') Owner edit @endsection

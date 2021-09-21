@@ -20,8 +20,8 @@
                             <small class="form-text text-muted">   Edit doctor's surname</small>
                         </div>
                         <div class="form-group" style="margin: 10px; font-style: italic">
-                            <label>  Ccategory: </label>
-                            <input type="text" name="doctor_surname" value="{{old('doctor_surname', $doctor->category)}}" class="form-control">
+                            <label>  Category: </label>
+                            <input type="text" name="doctor_category" value="{{old('doctor_category', $doctor->category)}}" class="form-control">
                             <small class="form-text text-muted">   Edit doctor's category</small>
                         </div>
                         <div class="form-group" style="margin: 10px">                         
