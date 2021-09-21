@@ -19,9 +19,17 @@ class PetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(Request $request)
     {
         $doctors = Doctor::orderBy('surname')->get();
+        $owners = Owner::orderBy('surname')->get();
         // ->paginate(self::RESULTS_IN_PAGE)
         //->withQueryString();
         if ($request->sort) {
@@ -38,6 +46,8 @@ class PetController extends Controller
             }
         } else if ($request->filter && 'doctor' == $request->filter) {
             $pets = Pet::where('doctor_id', $request->doctor_id)->paginate(self::RESULTS_IN_PAGE)->withQueryString();
+        } else if ($request->filter && 'owner' == $request->filter) {
+            $pets = Pet::where('owner_id', $request->owner_id)->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         } else if ($request->filter && 'species_filter' == $request->filter) {
             $pets = Pet::where('species', $request->species_id)->paginate(self::RESULTS_IN_PAGE)->withQueryString();
         } else if ($request->search && 'all' == $request->search) {
@@ -79,8 +89,8 @@ class PetController extends Controller
             'sortDirection' => $request->sort_dir ?? 'asc',
             'doctors' => $doctors,
             'doctor_id' => $request->doctor_id ?? '0',
-            'owners' => $doctors,
-            'owners_id' => $request->owners_id ?? '0',
+            'owners' => $owners,
+            'owner_id' => $request->owner_id ?? '0',
             's' => $request->s ?? ''
         ]);
     }
@@ -92,8 +102,9 @@ class PetController extends Controller
      */
     public function create()
     {
-        $doctors = Doctor::orderBy('surname')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
-        return view('pet.create', ['doctors' => $doctors]);
+        $doctors = Doctor::orderBy('surname', 'asc')->get();
+        $owners = Owner::orderBy('surname', 'asc')->get();
+        return view('pet.create', ['doctors' => $doctors], ['owners' => $owners]);
     }
 
     /**
@@ -109,11 +120,11 @@ class PetController extends Controller
             [
                 'pet_name' => ['required', 'min:3', 'max:255'],
                 'pet_species' => ['required', 'min:3', 'max:20'],
-                'pet_birth_date' => ['required', 'date_format:d/m/Y'],
+                'pet_birth_date' => ['required', 'integer', 'min:1990', 'max:2022'],
                 'pet_document' => ['required', 'min:3', 'max:20'],
                 'pet_history' => ['required'],
                 'doctor_id' => ['required', 'integer', 'min:1', 'max:1000'],
-                'owner_id' => ['required', 'integer', 'min:1', 'max:1000']
+                'owner_id' => ['required', 'integer', 'min:1', 'max:1000'],
             ]
         );
         if ($validator->fails()) {
@@ -157,8 +168,9 @@ class PetController extends Controller
         // $doctors = $doctors->sortBy('surname');// liepiam laraveliui surusiuoti
 
 
-        $doctors = Doctor::orderBy('surname')->paginate(self::RESULTS_IN_PAGE)->withQueryString();
-        return view('pet.edit', ['pet' => $pet, 'doctors' => $doctors]);
+        $doctors = Doctor::orderBy('surname', 'asc')->get();
+        $owners = Owner::orderBy('surname', 'asc')->get();
+        return view('pet.edit', ['pet' => $pet, 'doctors' => $doctors, 'owners' => $owners]);
     }
 
     /**
@@ -175,7 +187,7 @@ class PetController extends Controller
             [
                 'pet_name' => ['required', 'min:3', 'max:255'],
                 'pet_species' => ['required', 'min:3', 'max:20'],
-                'pet_birth_date' => ['required', 'date_format:d/m/Y'],
+                'pet_birth_date' => ['required', 'integer'],
                 'pet_document' => ['required', 'min:3', 'max:20'],
                 'pet_history' => ['required'],
                 'doctor_id' => ['required', 'integer', 'min:1', 'max:1000'],

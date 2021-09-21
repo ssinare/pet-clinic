@@ -10,16 +10,24 @@ use Validator;
 
 class DoctorController extends Controller
 {
+
     const RESULTS_IN_PAGE = 10;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $doctors = Doctor::orderBy('surname', 'desc')->get();
-        // ->paginate(self::RESULTS_IN_PAGE);
+        $doctors = Doctor::orderBy('surname', 'desc')->paginate(self::RESULTS_IN_PAGE);
+        // 
 
         return view('doctor.index', ['doctors' => $doctors]);
     }
@@ -31,7 +39,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('doctor.create');
+        $pets = Pet::orderBy('species', 'asc')->get();
+        return view('doctor.create', ['pets' => $pets]);
     }
 
     /**
@@ -42,7 +51,9 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+
         $validator = Validator::make(
+
             $request->all(),
             [
                 'doctor_name' => ['required', 'min:3', 'max:64'],

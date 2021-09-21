@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group" style="margin: 10px; font-style: italic">
                             <label>   History: </label>
-                            <textarea type="text" name="pet_history"  class="form-control">{{old('pet_history')}}</textarea>                                
+                            <textarea type="text" name="pet_history" id="summernote" class="form-control">{{old('pet_history')}}</textarea>                                
                         </div>
                         <div class="form-group" style="margin: 10px; font-style: italic">
                             <label>   Doctor: </label>
@@ -42,16 +42,17 @@
                             </select>
                             <small class="form-text text-muted">   Select doctor from the list</small>                                
                         </div>
+                        <div class="form-group" style="margin: 10px; font-style: italic">
                          <label>   Owner: </label>
                             <select type="text" name="owner_id" class="form-control">
                                 @foreach ($owners as $owner)
                                     <option value="{{$owner->id}}"@if(old('owner_id') == $owner->id)  selected @endif>{{$owner->name}} {{$owner->surname}}</option>
                                 @endforeach
                             </select>
-                            <small class="form-text text-muted">   Select owner from the list</small>                                
-                                                   
-                        <div class="form-group" style="margin: 10px">                         
-                            <button class="btn btn-light" type="submit" >Add</button>                            
+                            <small class="form-text text-muted">   Select owner from the list</small>                                                              
+                            <div class="form-group" style="margin: 10px">                         
+                                <button class="btn btn-light" type="submit" >Add</button>   
+                            </div>                         
                         </div> 
                         @csrf                       
                     </form>
@@ -62,7 +63,11 @@
    </div>
 </div>
 
-
+<script>
+$(document).ready(function() {
+   $('#summernote').summernote();
+ });
+</script>
 
 @endsection
 

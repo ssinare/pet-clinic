@@ -15,10 +15,18 @@ class OwnerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
-        $owners = Owner::orderBy('surname', 'desc')->get();
-        // ->paginate(self::RESULTS_IN_PAGE);
+        $owners = Owner::orderBy('surname', 'asc')->paginate(self::RESULTS_IN_PAGE);
+        // 
 
         return view('owner.index', ['owners' => $owners]);
     }

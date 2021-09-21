@@ -17,7 +17,7 @@ class CreatePetsTable extends Migration
             $table->id();
             $table->string('name', 255);
             $table->string('species', 20);
-            $table->date('birth_date');
+            $table->string('birth_date', 255);
             $table->string('document', 20);
             $table->text('history');
             $table->unsignedBigInteger('doctor_id');

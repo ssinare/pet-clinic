@@ -13,16 +13,16 @@
                <div class="card-body">
                     <div class="list-block">
                          <div class="pet-container">
-                        <div class="pet-container__maker">
+                        <div class="pet-container__history">
                            <div>  Name: <b> {{$pet->name}}  </b></div>  
                            <div> Birth date: <b> {{$pet->birth_date}} </b></div> 
                         </div>
                         </div>
                    </div>
                         <div class="pet-container">
-                        <div class="pet-container__notices">
+                        <div class="pet-container__history">
                         {!!$pet->history!!}
-                          {{-- //su regexpu tikrinti ar yra script tagas  ir pakeisti i      --}}
+                         
                         </div>   
                         </div>
                         <a href="{{route('pet.edit',[$pet])}}" class="btn btn-secondary m-2">Edit</a></a>
