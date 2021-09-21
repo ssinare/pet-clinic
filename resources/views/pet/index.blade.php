@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </fieldset>                    
-               </div>             
+                </form>             
                 <div class="card-body">
                      <div class="mb-3">{{$pets->links()}}</div>
                    <ul class="list-group">
